@@ -10,5 +10,5 @@ rootProject.name = "AndComponentTalk"
 include ':app'
 include ':util_lib'
 include ':order'
-include ':personal_lib'
 include ':common_lib'
+include ':personal'

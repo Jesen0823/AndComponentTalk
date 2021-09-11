@@ -3,6 +3,7 @@ ext {
     isDebug = true
 
     versions = [
+            compileSdk:30,
             minSdk     : 21,
             targetSdk  : 30,
             versionCode: 1,
@@ -10,8 +11,9 @@ ext {
     ]
 
     appId = [
-            applicationId: "com.jesen.andcomponenttalk",
-            util_library : "com.android.library",
+            app: "com.jesen.andcomponenttalk",
+            order:"com.jesen.order",
+            personal:"com.jesen.personal",
     ]
 
     host_url = [

@@ -9,7 +9,7 @@ def AppId = rootProject.ext.appId
 def urls = rootProject.ext.host_url
 
 android {
-    compileSdk 30
+    compileSdk versions.compileSdk
 
     defaultConfig {
         applicationId AppId.app
@@ -19,7 +19,6 @@ android {
         versionName Versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
 
         // 启用分包
         multiDexEnabled true
@@ -135,7 +134,7 @@ dependencies {
     implementation project(path: ':util_lib')
     implementation project(path: ':common_lib')
 
-    if (isDebug){
+    if (!isDebug){
         implementation project(path: ':order')
     }
 

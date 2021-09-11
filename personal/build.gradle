@@ -4,7 +4,6 @@ if (isDebug) {
     apply plugin: 'com.android.library'
 }
 
-
 // 自定义选项
 def Versions = rootProject.ext.versions
 def baseDepends = rootProject.ext.dependencies
@@ -12,11 +11,11 @@ def AppId = rootProject.ext.appId
 def urls = rootProject.ext.host_url
 
 android {
-    compileSdk versions.compileSdk
+    compileSdk Versions.compileSdk
 
     defaultConfig {
-        if (isDebug) {
-            applicationId AppId.order
+        if (isDebug){
+            applicationId AppId.personal
         }
         minSdk Versions.minSdk
         targetSdk Versions.targetSdk
@@ -33,13 +32,12 @@ android {
                     manifest.srcFile 'src/main/debug/AndroidManifest.xml'
                 } else {
                     // 集成化模式．整个项目打包apk
-                    manifest.srcFile 'src/main/AndroidManifest.xml' j
+                    manifest.srcFile 'src/main/ AndroidManifest.xml' j
                     // release时，debug目录下的文件要排除在外
                     exclude '**/debug/**'
                 }
             }
         }
-
     }
 
     buildTypes {
