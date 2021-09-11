@@ -26,7 +26,7 @@ apt是一种处理注释的工具，它对源代码文件进行检测找出其�
 **相关属性**
 
 |  -- 属性名 --                | -- 解释 --|
-| --                 --  | --          --|
+| :------: | :------: |
 | getEnclosedElements() | 返回该元素直接包含的子元素 |
 | getEnclosingElement() | 返回包含该element的父element，与上一个方法相反 |
 | getKind()             | 返回element的类型，判断是哪种element |
