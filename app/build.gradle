@@ -145,5 +145,4 @@ dependencies {
     // 进一步简化，遍历baseDepends集合
     baseDepends.each { k, v -> implementation v }
 
-
 }
