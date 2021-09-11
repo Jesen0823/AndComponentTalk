@@ -3,20 +3,22 @@ plugins {
 }
 
 // 自定义选项
-def Versions = rootProject.ext.versions
-def baseDepends = rootProject.ext.dependencies
-def AppId = rootProject.ext.appId
-def urls = rootProject.ext.host_url
+def mVersions = rootProject.ext.mVersions
+def mDencies = rootProject.ext.mDencies
+def mIds = rootProject.ext.mIds
+def host_url = rootProject.ext.host_url
+def isDebug = rootProject.ext.isDebug
+
 
 android {
-    compileSdk versions.compileSdk
+    compileSdkVersion mVersions.compileSdk
 
     defaultConfig {
-        applicationId AppId.app
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
-        versionCode Versions.versionCode
-        versionName Versions.versionName
+        applicationId mIds.app
+        minSdk mVersions.minSdk
+        targetSdk mVersions.targetSdk
+        versionCode mVersions.versionCode
+        versionName mVersions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -74,12 +76,12 @@ android {
         debug {
             // 对构建类型设置签名信息
             signingConfig signingConfigs.debug
-            buildConfigField("String", "debug", "\"${urls.debug}\"")
+            buildConfigField("String", "debug", "\"${host_url.debug}\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "debug", "\"${urls.release}\"")
+            buildConfigField("String", "debug", "\"${host_url.release}\"")
             // 对构建类型设置签名信息
             signingConfig signingConfigs.release
         }
@@ -134,8 +136,11 @@ dependencies {
     implementation project(path: ':util_lib')
     implementation project(path: ':common_lib')
 
+    println(" --app-----isDebug：$isDebug")
+
     if (!isDebug){
         implementation project(path: ':order')
+        implementation project(path:':personal')
     }
 
 
@@ -148,6 +153,6 @@ dependencies {
     androidTestImplementation baseDepends.espresso*/
 
     // 进一步简化，遍历baseDepends集合
-    baseDepends.each { k, v -> implementation v }
+    mDencies.each { k, v -> implementation v }
 
 }
