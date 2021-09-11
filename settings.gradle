@@ -3,6 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
         //jcenter() // Warning: this repository is going to shut down soon
     }
 }
@@ -14,3 +15,4 @@ include ':common_lib'
 include ':personal'
 include ':arouter_talk'
 include ':arouter_annotation_lib'
+include ':arouter_compiler_lib'
