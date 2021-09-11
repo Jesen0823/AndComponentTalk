@@ -8,4 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AndComponentTalk"
 include ':app'
-include ':util_library'
+include ':util_lib'
+include ':order'
+include ':personal_lib'
