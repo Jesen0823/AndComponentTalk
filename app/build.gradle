@@ -133,6 +133,12 @@ android {
 
 dependencies {
     implementation project(path: ':util_lib')
+    implementation project(path: ':common_lib')
+
+    if (isDebug){
+        implementation project(path: ':order')
+    }
+
 
     // 简化公共依赖
     /*implementation baseDepends.appcompat
