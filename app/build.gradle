@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
 }
 
-//
+// 自定义选项
 def Versions = rootProject.ext.versions
 def baseDepends = rootProject.ext.dependencies
 def AppId = rootProject.ext.appId
@@ -21,10 +21,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        // qi yong fenbao
+        // 启用分包
         multiDexEnabled true
 
-        // zhi ding ziyuan
+        // 指定资源类型
         resConfigs('zh-rCN')
 
         //源集–设置源集的属性，更改源集的Java /录或者自山录等
@@ -71,7 +71,7 @@ android {
     }
 
     buildTypes {
-        // add selection in BuildConfig.java
+        // 会添加选项配置到 BuildConfig.java
         debug {
             // 对构建类型设置签名信息
             signingConfig signingConfigs.debug
@@ -134,7 +134,7 @@ android {
 dependencies {
     implementation project(path: ':util_library')
 
-    // jianhua
+    // 简化公共依赖
     /*implementation baseDepends.appcompat
     implementation baseDepends.material
     implementation baseDepends.constraintlayout
@@ -142,7 +142,7 @@ dependencies {
     androidTestImplementation baseDepends.extjunit
     androidTestImplementation baseDepends.espresso*/
 
-    // zai jian hua
+    // 进一步简化，遍历baseDepends集合
     baseDepends.each { k, v -> implementation v }
 
 
