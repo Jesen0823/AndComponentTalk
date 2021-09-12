@@ -12,7 +12,7 @@ JavaPoet是square推出的开源java代码生成框架，提供Java Api生成.ja
 [JavaPoet项目主页及源码:] (https://github.com/square/javapoet)
 
 ```Groovy
-// apt 需要的依赖
+// apt 需要的依赖，注册注解处理器
 annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
 compileOnly 'com.google.auto.service:auto-service:1.0-rc4'
 
@@ -43,4 +43,60 @@ implementation "com.squareup:javapoet: 1.9.0"
 | $T  | 类、接口，如:$T, MainActivity |
 | $N  | 变量，如:user.$N, name |
 
+* javapoet的实现跟普通apt实现是一样的，只有在生成类的方式上有一些不同，具体不同在下面方法对新文件生成的设置：
 
+```java
+
+ @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        if (annotations.isEmpty()) {
+            return false;
+        }
+        // 获取所有带ARouter注解的 类节点,并遍历
+        Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(PARouter.class);
+        for (Element element : elements) {
+            // 通过类节点获取包节点路径
+            String packageName = elementUtils.getPackageOf(element).getQualifiedName().toString();
+            String className = element.getSimpleName().toString();
+            messager.printMessage(Diagnostic.Kind.NOTE, "---the class being annotation is: " + className);
+            // 最终想生成的类文件名
+            String finalClassName = className + "$$PARouter";
+
+            // javapoet ,butterknife就是用了JavaPoet
+            // 高级写法，javapoet构建工具，参考（https://github.com/JakeWharton/butterknife）
+            try {
+                // 获取类之上@ARouter注解的path值
+                PARouter aRouter = element.getAnnotation(PARouter.class);
+
+                // 构建方法体
+                MethodSpec method = MethodSpec.methodBuilder("findTargetClass") // 方法名
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(Class.class) // 返回值Class<?>
+                        .addParameter(String.class, "path") // 参数(String path)
+                        // 方法内容拼接：
+                        // return path.equals("/app/MainActivity") ? MainActivity.class : null
+                        .addStatement("return path.equals($S) ? $T.class : null",
+                                aRouter.path(), ClassName.get((TypeElement) element))
+                        .build(); // 构建
+
+                // 构建类
+                TypeSpec type = TypeSpec.classBuilder(finalClassName)
+                        .addModifiers(Modifier.PUBLIC) //, Modifier.FINAL)
+                        .addMethod(method) // 添加方法体
+                        .build(); // 构建
+
+                // 在指定的包名下，生成Java类文件
+                JavaFile javaFile = JavaFile.builder(packageName, type)
+                        .build();
+                javaFile.writeTo(filer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+```
+
+
+![java poet路由案例结构](./images/2021-09-12_195601.png)
