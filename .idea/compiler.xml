@@ -21,6 +21,7 @@
       <module name="AndComponentTalk.app" target="11" />
       <module name="AndComponentTalk.arouter_talk" target="11" />
       <module name="AndComponentTalk.common_lib" target="11" />
+      <module name="AndComponentTalk.javapoet_arouter_talk" target="11" />
       <module name="AndComponentTalk.order" target="11" />
       <module name="AndComponentTalk.personal" target="11" />
       <module name="AndComponentTalk.util_lib" target="11" />
