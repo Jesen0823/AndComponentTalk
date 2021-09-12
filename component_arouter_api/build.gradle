@@ -35,7 +35,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // 每个依赖common的模块都会用到
-    api project(path: ':component_arouter_api')
-
+    implementation project(path: ':component_annotation_lib')
 }

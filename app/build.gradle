@@ -135,6 +135,8 @@ android {
 dependencies {
     implementation project(path: ':util_lib')
     implementation project(path: ':common_lib')
+    implementation project(path: ':component_annotation_lib')
+    annotationProcessor project(path: ':component_compiler_lib')
 
     println(" --app-----isDebug：$isDebug")
 
@@ -154,5 +156,7 @@ dependencies {
 
     // 进一步简化，遍历baseDepends集合
     mDencies.each { k, v -> implementation v }
+
+
 
 }

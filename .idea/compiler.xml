@@ -16,6 +16,7 @@
         </processorPath>
         <module name="AndComponentTalk.javapoet_compiler_lib" />
         <module name="AndComponentTalk.arouter_compiler_lib" />
+        <module name="AndComponentTalk.component_compiler_lib" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
