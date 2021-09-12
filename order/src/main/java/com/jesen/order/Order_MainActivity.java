@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.jesen.common_lib.jumppage.RecordPathManager;
 
 public class Order_MainActivity extends AppCompatActivity {
 
@@ -21,17 +20,11 @@ public class Order_MainActivity extends AppCompatActivity {
         goPersonalBtn = findViewById(R.id.goPersonalBtn);
 
         goHomeBtn.setOnClickListener(view -> {
-            Class<?> targetClass = RecordPathManager.getTargetClass("app", "MainActivity");
-            Intent intent = new Intent(this,targetClass);
-            intent.putExtra("name","app");
-            startActivity(intent);
+
         });
 
         goPersonalBtn.setOnClickListener(view -> {
-            Class<?> targetClass = RecordPathManager.getTargetClass("personal", "Person_MainActivity");
-            Intent intent = new Intent(this,targetClass);
-            intent.putExtra("name","personal");
-            startActivity(intent);
+
         });
     }
 }

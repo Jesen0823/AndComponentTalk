@@ -18,25 +18,11 @@ public class MainActivity extends AppCompatActivity {
         goPeron = findViewById(R.id.goPerBtn);
 
         goOrder.setOnClickListener(view -> {
-            Class<?> aClass = null;
-            try {
-                aClass = Class.forName("com.jesen.personal.Order_MainActivity");
-                Intent intent = new Intent(this,aClass);
-                startActivity(intent);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+
         });
 
         goPeron.setOnClickListener(view -> {
-            Class<?> aClass = null;
-            try {
-                aClass = Class.forName("com.jesen.personal.Person_MainActivity");
-                Intent intent = new Intent(this,aClass);
-                startActivity(intent);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+
         });
     }
 }
