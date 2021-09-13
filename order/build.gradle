@@ -72,5 +72,11 @@ dependencies {
 
     implementation project(path: ':util_lib')
     implementation project(path: ':common_lib')
+
     mDencies.each { k, v -> implementation v }
+
+    // apt注解
+    implementation project(path: ':component_annotation_lib')
+    // apt注解处理器
+    annotationProcessor project(path: ':component_compiler_lib')
 }

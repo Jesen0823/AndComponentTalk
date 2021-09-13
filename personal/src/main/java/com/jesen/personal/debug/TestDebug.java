@@ -1,5 +1,4 @@
 package com.jesen.personal.debug;
 
-public class TestPerson {
-
+public class TestDebug {
 }

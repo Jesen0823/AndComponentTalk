@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndComponentTalk">
         <activity
+            android:name=".Order_3Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Order_2Activity"
+            android:exported="true" />
+        <activity
             android:name=".Order_MainActivity"
             android:exported="true">
             <intent-filter>
