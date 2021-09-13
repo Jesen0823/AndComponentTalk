@@ -10,6 +10,7 @@ import com.jesen.andcomponenttalk.apt.ComARouter$$Group$$order;
 import com.jesen.andcomponenttalk.apt.ComARouter$$Path$$order;
 import com.jesen.component_annotation.ComARouter;
 import com.jesen.component_annotation.model.RouterBean;
+import com.jesen.component_arouter_api.RouterManager;
 import com.jesen.component_arouter_api.core.ComARouterLoadGroup;
 import com.jesen.component_arouter_api.core.ComARouterLoadPath;
 
@@ -49,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 路由跳转
         goPeron.setOnClickListener(view -> {
-
+            RouterManager.getInstance()
+                    .build("/personal/Person_MainActivity")
+                    .withString("nimama","eat")
+                    .withInt("age",50)
+                    .navigation(this);
         });
     }
 }
