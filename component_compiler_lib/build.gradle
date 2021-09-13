@@ -7,17 +7,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-tasks.withType(JavaCompile){
-    options.encoding = "UTF-8"
-}
-
 dependencies {
     // 注册注解处理器
-    compileOnly'com.google.auto.service:auto-service:1.0-rc4'
-    annotationProcessor'com.google.auto.service:auto-service:1.0-rc4'
+    compileOnly 'com.google.auto.service:auto-service:1.0-rc4'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
 
     // 帮助我们通过类调用的形式来生成Java代码
     implementation "com.squareup:javapoet:1.9.0"
 
-    implementation project(path: ':component_annotation_lib')
+    implementation project(':component_annotation_lib')
+}
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
 }

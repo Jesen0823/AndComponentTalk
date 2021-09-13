@@ -1,7 +1,7 @@
 package com.jesen.andcomponenttalk.test;
 
-import com.jesen.component_arouter_api.ComARouterLoadGroup;
-import com.jesen.component_arouter_api.ComARouterLoadPath;
+import com.jesen.component_arouter_api.core.ComARouterLoadGroup;
+import com.jesen.component_arouter_api.core.ComARouterLoadPath;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -28,6 +28,20 @@ android {
         // 指定资源类型
         resConfigs('zh-rCN')
 
+
+        // 这个方法接收三个非空的参数，第一个：确定值的类型，第二个：指定key的名字，第三个：传值（必须是String）
+        // 为什么需要定义这个？因为src代码中有可能需要用到跨模块交互，如果是组件化模块显然不行
+        // 切记：不能在android根节点，只能在defaultConfig或buildTypes节点下
+        buildConfigField("boolean", "isDebug", String.valueOf(isDebug))
+
+        // 在gradle文件中配置选项参数值（用于APT传参接收）
+        // 切记：必须写在defaultConfig节点下
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName(), packageNameForAPT: packageNameForAPT]
+            }
+        }
+
         //源集–设置源集的属性，更改源集的Java /录或者自山录等
         /*sourceSets {
             main {
@@ -133,19 +147,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':util_lib')
-    implementation project(path: ':common_lib')
-    implementation project(path: ':component_annotation_lib')
-    annotationProcessor project(path: ':component_compiler_lib')
-
-    println(" --app-----isDebug：$isDebug")
-
-    if (!isDebug){
-        implementation project(path: ':order')
-        implementation project(path:':personal')
-    }
-
-
     // 简化公共依赖
     /*implementation baseDepends.appcompat
     implementation baseDepends.material
@@ -157,6 +158,19 @@ dependencies {
     // 进一步简化，遍历baseDepends集合
     mDencies.each { k, v -> implementation v }
 
+    implementation project(path: ':util_lib')
+    implementation project(path: ':common_lib')
 
+    // apt注解
+    implementation project(path: ':component_annotation_lib')
+    // apt注解处理器
+    annotationProcessor project(path: ':component_compiler_lib')
 
+    println(" --app-----isDebug：$isDebug")
+
+    if (!isDebug){
+        implementation project(path: ':order')
+        implementation project(path:':personal')
+    }
+    
 }

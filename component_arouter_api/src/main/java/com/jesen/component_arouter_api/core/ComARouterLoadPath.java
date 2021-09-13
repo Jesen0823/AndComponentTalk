@@ -1,4 +1,4 @@
-package com.jesen.component_arouter_api;
+package com.jesen.component_arouter_api.core;
 
 import com.jesen.component_annotation.model.RouterBean;
 

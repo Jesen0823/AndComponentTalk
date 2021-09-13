@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.jesen.component_annotation.ComARouter;
+
+@ComARouter(path = "/app/MainActivity")
 public class MainActivity extends AppCompatActivity {
 
     private Button goOrder,goPeron;

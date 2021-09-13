@@ -137,7 +137,7 @@ public class RouterBean {
 
 ```
 
-### 生成注解代码
+### 生成什么样的代码
 
 * **最终生成的代码样式：**
    * `ComARouter$$Group$$order.java` :
@@ -212,4 +212,46 @@ public class ComARouter$$Path$$order implements ComARouterLoadPath {
         }
     }
 
+```
+
+###  生成代码的过程
+
+1. app 模块build.gradle加入传参
+
+```Groovy
+
+        // 在gradle文件中配置选项参数值（用于APT传参接收）
+        // 切记：必须写在defaultConfig节点下
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName(), packageNameForAPT: packageNameForAPT]
+            }
+        }
+```
+
+2. 配置apt生成的路径，config.build下定义路径变量：
+
+```Groovy
+    // 包名，用于存放APT生成的类文件
+    packageNameForAPT = "com.jesen.andcomponenttalk.apt"
+```
+
+3. 在compiler 注解处理器下定义的常量Constant.java中定义路径和组名变量：
+
+```java
+
+// 每个子模块的模块名
+    public static final String MODULE_NAME = "moduleName";
+
+    // 包名，用于存放APT生成的类文件
+    public static final String APT_PACKAGE = "packageNameForAPT";
+```
+4. 在注解处理器 ComARouterProcessor.java中添加需要从app moudule中build.gradle传递过来的组名和路径
+```java
+
+// 接受application module的build.gradle传递过来的参数
+@SupportedOptions({Constants.MODULE_NAME, Constants.APT_PACKAGE})
+public class ComARouterProcessor extends AbstractProcessor {
+    // ....
+}
 ```

@@ -1,7 +1,7 @@
 package com.jesen.andcomponenttalk.test;
 
 import com.jesen.component_annotation.model.RouterBean;
-import com.jesen.component_arouter_api.ComARouterLoadPath;
+import com.jesen.component_arouter_api.core.ComARouterLoadPath;
 import com.jesen.order.Order_MainActivity;
 
 import java.util.HashMap;

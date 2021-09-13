@@ -2,6 +2,9 @@ ext {
 
     isDebug = false
 
+    // 包名，用于存放APT生成的类文件
+    packageNameForAPT = "com.jesen.andcomponenttalk.apt"
+
     mVersions = [
             compileSdk:30,
             minSdk     : 21,
