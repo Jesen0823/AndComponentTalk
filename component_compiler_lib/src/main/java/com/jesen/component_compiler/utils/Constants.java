@@ -6,7 +6,7 @@ public class Constants {
 
     // 注解处理器中支持的注解类型
     public static final String IROUTER_ANNOTATION_TYPES = "com.jesen.component_annotation.ComARouter";
-    public static final String PARAMETER_ANNOTATION_TYPES = "com.jesen.component_annotation.Parameter";
+    public static final String PARAMETER_ANNOTATION_TYPES = "com.jesen.component_annotation.ComParameter";
 
     // 每个子模块的模块名
     public static final String MODULE_NAME = "moduleName";
@@ -48,5 +48,5 @@ public class Constants {
     // APT生成的路由组Group对应的详细Path源文件名
     public static final String PATH_FILE_NAME = "ComARouter$$Path$$";
     // APT生成的获取参数类文件名
-    public static final String PARAMETER_FILE_NAME = "$$Parameter";
+    public static final String PARAMETER_FILE_NAME = "$$ComParameter";
 }

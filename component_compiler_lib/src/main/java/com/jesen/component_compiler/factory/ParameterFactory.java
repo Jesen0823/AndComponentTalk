@@ -1,6 +1,6 @@
 package com.jesen.component_compiler.factory;
 
-import com.jesen.component_annotation.Parameter;
+import com.jesen.component_annotation.ComParameter;
 import com.jesen.component_compiler.utils.Constants;
 import com.jesen.component_compiler.utils.EmptyUtils;
 import com.squareup.javapoet.ClassName;
@@ -64,7 +64,7 @@ public class ParameterFactory {
         // 获取属性名
         String fieldName = element.getSimpleName().toString();
         // 获取注解的值
-        String annotationValue = element.getAnnotation(Parameter.class).name();
+        String annotationValue = element.getAnnotation(ComParameter.class).name();
         // 判断注解的值为空的情况下的处理（注解中有name值就用注解值）
         annotationValue = EmptyUtils.isEmpty(annotationValue) ? fieldName : annotationValue;
         // 最终拼接的前缀：

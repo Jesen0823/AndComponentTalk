@@ -1,7 +1,7 @@
 package com.jesen.component_compiler;
 
 import com.google.auto.service.AutoService;
-import com.jesen.component_annotation.Parameter;
+import com.jesen.component_annotation.ComParameter;
 import com.jesen.component_compiler.factory.ParameterFactory;
 import com.jesen.component_compiler.utils.Constants;
 import com.jesen.component_compiler.utils.EmptyUtils;
@@ -62,7 +62,7 @@ public class ParameterProcessor extends AbstractProcessor {
         // 一旦有类之上使用@Parameter注解
         if (!EmptyUtils.isEmpty(set)) {
             // 获取所有被 @Parameter 注解的 元素（属性）集合
-            Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Parameter.class);
+            Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ComParameter.class);
 
             if (!EmptyUtils.isEmpty(elements)) {
                 // 解析元素
