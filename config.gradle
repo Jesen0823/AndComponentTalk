@@ -31,5 +31,8 @@ ext {
             'junit'           : 'junit:junit:4.+',
             'extjunit'        : 'androidx.test.ext:junit:1.1.2',
             'espresso'        : 'androidx.test.espresso:espresso-core:3.3.0',
+            "okhttp3"        : "com.squareup.okhttp3:okhttp:3.10.0",
+            "retrofit"       : "com.squareup.retrofit2:retrofit:2.5.0",
+            "fastjson"       : "com.alibaba:fastjson:1.2.58",
     ]
 }

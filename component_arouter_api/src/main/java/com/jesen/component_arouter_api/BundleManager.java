@@ -2,10 +2,11 @@ package com.jesen.component_arouter_api;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.telecom.Call;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.jesen.component_arouter_api.core.Call;
 
 /**
  * 路由跳转参数Bundle管理

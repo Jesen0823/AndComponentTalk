@@ -139,8 +139,11 @@ public class ComARouterProcessor extends AbstractProcessor {
 
         // 通过Element工具类，获取Activity类型
         TypeElement activityType = elementUtils.getTypeElement(Constants.ACTIVITY);
+        TypeElement callType = elementUtils.getTypeElement(Constants.CALL);
+
         // 显示类信息获取被注解节点，类节点）这里也叫自描述 Mirror
         TypeMirror activityMirror = activityType.asType();
+        TypeMirror callMirror = callType.asType();
 
         for (Element element : elements) {
             // 获取每个元素的类信息
@@ -160,7 +163,9 @@ public class ComARouterProcessor extends AbstractProcessor {
             // 判断以保证@ComARouter注解只能被用到类之上，且是规定的Activity
             if (typeUtils.isSubtype(typeMirror, activityMirror)) {
                 bean.setType(RouterBean.Type.ACTIVITY);
-            } else {
+            } else if (typeUtils.isSubtype(typeMirror, callMirror)) {
+                bean.setType(RouterBean.Type.CALL);
+            }else {
                 throw new RuntimeException("@ComARouter  just could be use to Activity.");
             }
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.LruCache;
 
 import com.jesen.component_annotation.model.RouterBean;
+import com.jesen.component_arouter_api.core.Call;
 import com.jesen.component_arouter_api.core.ComARouterLoadGroup;
 import com.jesen.component_arouter_api.core.ComARouterLoadPath;
 
@@ -122,6 +123,9 @@ public class RouterManager {
             }
 
             if (pathLoad != null) {
+                // tempMap赋值
+                pathLoad.loadPath();
+
                 if (pathLoad.loadPath().isEmpty()) {
                     throw new RuntimeException("路由表path加载失败...");
                 }
@@ -145,6 +149,12 @@ public class RouterManager {
                                 ((Activity) context).startActivity(intent, bundleManager.getBundle());
                             }
                             break;
+                        case CALL:
+                            // getClazz()拿到的是接口的实现类
+                            Class<?> clazz = routerBean.getClazz();
+                            Call call = (Call) clazz.newInstance();
+                            bundleManager.setCall(call);
+                            return bundleManager.getCall();
                         default:
                     }
                 }

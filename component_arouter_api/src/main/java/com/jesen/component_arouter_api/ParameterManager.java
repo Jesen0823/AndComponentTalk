@@ -12,7 +12,7 @@ import com.jesen.component_arouter_api.core.ParameterLoad;
  */
 public class ParameterManager {
 
-    private static final int MAX_CACHE_SIZE = 163;
+    private static final int MAX_CACHE_SIZE = 200;
 
     private static ParameterManager instance;
 
