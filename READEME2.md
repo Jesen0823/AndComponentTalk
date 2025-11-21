@@ -142,7 +142,7 @@ public class ARouterProcessor extends AbstractProcessor {
             // 最终想生成的类文件名
             String finalClassName = className + "$$ARouter";
 
-            // 公开课写法，也是EventBus写法（https://github.com/greenrobot/EventBus）
+            // EventBus写法（https://github.com/greenrobot/EventBus）
             try {
                 // 创建一个新的源文件（Class），并返回一个对象以允许写入它
                 JavaFileObject sourceFile = filer.createSourceFile(packageName + "." + finalClassName);

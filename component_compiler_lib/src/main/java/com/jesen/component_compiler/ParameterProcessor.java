@@ -36,7 +36,7 @@ import javax.tools.Diagnostic;
 
 @AutoService(Processor.class)
 @SupportedAnnotationTypes({Constants.PARAMETER_ANNOTATION_TYPES})
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
 public class ParameterProcessor extends AbstractProcessor {
 
     private Elements elementUtils;

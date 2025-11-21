@@ -1,14 +1,12 @@
 ext {
 
-    isDebug = false
-
     // 包名，用于存放APT生成的类文件
     packageNameForAPT = "com.jesen.andcomponenttalk.apt"
 
     mVersions = [
-            compileSdk:30,
-            minSdk     : 21,
-            targetSdk  : 30,
+            compileSdk:36,
+            minSdk     : 24,
+            targetSdk  : 36,
             versionCode: 1,
             versionName: "1.0",
     ]
@@ -25,12 +23,6 @@ ext {
     ]
 
     mDencies = [
-            'appcompat'       : 'androidx.appcompat:appcompat:1.2.0',
-            'material'        : 'com.google.android.material:material:1.3.0',
-            'constraintlayout': 'androidx.constraintlayout:constraintlayout:2.0.4',
-            'junit'           : 'junit:junit:4.+',
-            'extjunit'        : 'androidx.test.ext:junit:1.1.2',
-            'espresso'        : 'androidx.test.espresso:espresso-core:3.3.0',
             "okhttp3"        : "com.squareup.okhttp3:okhttp:3.10.0",
             "retrofit"       : "com.squareup.retrofit2:retrofit:2.5.0",
             "fastjson"       : "com.alibaba:fastjson:1.2.58",

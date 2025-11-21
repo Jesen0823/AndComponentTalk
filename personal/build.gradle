@@ -1,8 +1,11 @@
-if (isDebug) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
+plugins {
+    // 声明插件并设置 apply false（仅声明，不立即应用）
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
 }
+
+def isDebug = project.property("isDebug").toBoolean()
 
 // 自定义选项
 def mVersions = rootProject.ext.mVersions
@@ -11,12 +14,21 @@ def mIds = rootProject.ext.mIds
 def host_url = rootProject.ext.host_url
 //def isDebug = rootProject.ext.isDebug
 
+// 根据 isDebug 条件应用 Application 或 Library 插件
+if (isDebug) {
+    apply plugin: libs.plugins.android.application.get().pluginId
+} else {
+    apply plugin: libs.plugins.android.library.get().pluginId
+}
+// 必须应用 Kotlin Android 插件（无论应用/库模块）
+apply plugin: libs.plugins.kotlin.android.get().pluginId
 
 android {
-    compileSdk mVersions.compileSdk
+    namespace = mIds.personal
+    compileSdkVersion = mVersions.compileSdk
 
     defaultConfig {
-        if (isDebug){
+        if (isDebug) {
             applicationId mIds.personal
         }
         minSdk mVersions.minSdk
@@ -35,7 +47,7 @@ android {
         // 切记：必须写在defaultConfig节点下
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName(), packageNameForAPT: packageNameForAPT]
+                arguments = [moduleName: project.name, packageNameForAPT: packageNameForAPT]
             }
         }
     }
@@ -64,8 +76,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        buildConfig = true // 显式开启BuildConfig生成（AGP 8.x 默认开启）
     }
 }
 
@@ -74,7 +92,14 @@ dependencies {
     implementation project(path: ':util_lib')
     implementation project(path: ':common_lib')
 
-    mDencies.each { k, v -> implementation v }
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
 
     // apt注解
     implementation project(path: ':component_annotation_lib')

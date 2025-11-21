@@ -45,7 +45,7 @@ import javax.tools.Diagnostic;
 // 允许/支持的注解类型，让注解处理器处理
 @SupportedAnnotationTypes({Constants.IROUTER_ANNOTATION_TYPES})
 // 指定JDK编译版本
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
 // 接受application module的build.gradle传递过来的参数
 @SupportedOptions({Constants.MODULE_NAME, Constants.APT_PACKAGE})
 public class ComARouterProcessor extends AbstractProcessor {
