@@ -14,11 +14,12 @@ import com.jesen.component_annotation.ComARouter;
 import com.jesen.component_annotation.ComParameter;
 import com.jesen.component_arouter_api.ParameterManager;
 import com.jesen.component_arouter_api.RouterManager;
+import com.jesen.personal.databinding.ActivityPersonMainBinding;
 
 @ComARouter(path = "/personal/Person_MainActivity")
 public class Person_MainActivity extends AppCompatActivity {
 
-    private Button goHomeBtn, goOrderBtn;
+    private ActivityPersonMainBinding binding;
 
     @ComParameter(name = "/app/getUserInfo")
     IUser iUser;
@@ -29,10 +30,8 @@ public class Person_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_person_main);
-
-        goHomeBtn = findViewById(R.id.goHomeBtn);
-        goOrderBtn = findViewById(R.id.goOrderBtn);
+        binding = ActivityPersonMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Log.d("Personal_MainActivity", "personal/Personal_MainActivity");
 
@@ -51,17 +50,23 @@ public class Person_MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.info);
         textView.setText(userInfo.toString());
 
-        goHomeBtn.setOnClickListener(view -> {
+        binding.goHomeBtn.setOnClickListener(view -> {
             RouterManager.getInstance()
                     .build("/app/MainActivity")
                     .withResultString("nimama", "I'am comeback!")
                     .navigation(this);
         });
 
-        goOrderBtn.setOnClickListener(view -> {
+        binding.goOrderBtn.setOnClickListener(view -> {
             RouterManager.getInstance()
                     .build("/order/Order_MainActivity")
                     .withString("name", "person")
+                    .navigation(this);
+        });
+
+        binding.goCommentList.setOnClickListener(view ->{
+            RouterManager.getInstance()
+                    .build("/personal/CommentActivity")
                     .navigation(this);
         });
     }

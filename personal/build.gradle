@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    id 'kotlin-kapt'
 }
 
 def isDebug = project.property("isDebug").toBoolean()
@@ -84,6 +85,7 @@ android {
     }
     buildFeatures {
         buildConfig = true // 显式开启BuildConfig生成（AGP 8.x 默认开启）
+        viewBinding = true
     }
 }
 
@@ -101,8 +103,17 @@ dependencies {
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
 
+    // 网络请求依赖：引用libs.versions.toml中的定义
+    implementation libs.retrofit.core
+    implementation libs.retrofit.converter.gson
+    implementation libs.coroutines.android
+
+    // 图片加载依赖：普通依赖 + kapt注解处理
+    implementation libs.glide.core
+    kapt libs.glide.compiler
+
     // apt注解
     implementation project(path: ':component_annotation_lib')
     // apt注解处理器
-    annotationProcessor project(path: ':component_compiler_lib')
+    kapt project(path: ':component_compiler_lib')
 }

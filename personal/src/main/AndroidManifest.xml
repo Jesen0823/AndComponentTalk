@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndComponentTalk">
         <activity
+            android:name=".comment.mvp.view.CommentActivity"
+            android:exported="false" />
+        <activity
             android:name=".Person_3Activity"
             android:exported="true" />
         <activity
